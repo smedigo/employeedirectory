@@ -12,7 +12,7 @@ function EmployeeBody ({ users }) {
     return formatteDate;
   }
 
-  // setting up the structure of the table with tutor's help 
+  // setting up the structure of the table
   return (
     
     <tbody>

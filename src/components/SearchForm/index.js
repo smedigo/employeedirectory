@@ -1,6 +1,7 @@
 import React from "react";
 
 const SearchForm = props => {
+  console.log(props.employees)
   return (
     <form className="search" onChange={props.handleFormSubmit}>
       <div className="form-group">
@@ -30,7 +31,9 @@ const SearchForm = props => {
           <option value="Email">Email</option>
         </select>
         <datalist id="employees">
-          {props.employees.map(employee => (
+
+          {
+          !props.employees ? <div>Loading...</div>: props.employees.map(employee => (
             <option
               value={`${employee.name.first} ${employee.name.last}`}
               key={employee.login.uuid}

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Nav from "./Nav";
+import Nav from "../Nav";
 import API from "../../utils/API";
-import EmployeeTable from "./EmployeeTable";
+import EmployeeTable from "../EmployeeTable";
 
 // need to make a component EmployeeTable and Nav
 
 export default class EmployeeInfo extends Component {
-    state = {
+    state = {  //saving data here
         users: [{}],
         order: "descend",
         filteredUsers: [{}]
@@ -84,7 +84,7 @@ export default class EmployeeInfo extends Component {
     render() {
         return (
             <>
-                <Nav searchChange={this.searchChange} />
+                <Nav searchChange={this.searchChange} employees={this.state.users}/>
                 <div className="EmployeeInfo" />
                 <EmployeeTable
                     headings={this.headings}
