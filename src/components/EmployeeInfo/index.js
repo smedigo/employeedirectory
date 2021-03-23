@@ -74,13 +74,14 @@ export default class EmployeeInfo extends Component {
 
     componentDidMount() {
         API.getUsers().then(results => {
+            
             this.setState({
                 users: results.data.results,
                 filteredUsers: results.data.results,
             });
         });
     }
-
+    console.log(results)
     render() {
         return (
             <>
