@@ -32,14 +32,24 @@ const SearchForm = props => {
         </select>
         <datalist id="employees">
 
-          {
-          !props.employees ? <div>Loading...</div>: props.employees.map(employee => (
-            <option
-              value={`${employee.name.first} ${employee.name.last}`}
-              key={employee.login.uuid}
-            />
-          ))}
-        </datalist>
+          {!props.employees[0].name ? (
+            <div>Loading...</div>
+          ) : (
+            <div>
+              <input list="employees" />
+              <datalist id="employees">
+                {props.employees.map((employee) => {
+                  return (
+                    <option
+                      value={`${employee.name.first} ${employee.name.last}`}
+                      key={employee.login.uuid}
+                    />
+                  );
+                })}
+              </datalist>
+            </div>
+          )};
+          </datalist>
       </div>
     </form>
   );

@@ -73,7 +73,7 @@ export default class EmployeeInfo extends Component {
     }
 
     componentDidMount() {
-        API.getUsers().then(results => {
+        API.getEmployees().then(results => {
             
             this.setState({
                 users: results.data.results,
@@ -81,7 +81,7 @@ export default class EmployeeInfo extends Component {
             });
         });
     }
-    console.log(results)
+    
     render() {
         return (
             <>
