@@ -1,4 +1,21 @@
 import React from "react";
+//import { PropTypes } from 'react';
+
+// function SearchForm({ handleSearchChange}) {
+//   return (
+//     <div className="searchform">
+//       <form className="form-inline">
+//         <input 
+//         className="form-control"
+//         type="search"
+//         placeholder="Search"
+//         aria-label="Search"
+//         onChange={ e => handleSearchChange(e)}
+//         />
+//       </form>
+//     </div>
+//   )
+// }
 
 const SearchForm = props => {
   console.log(props.employees)
@@ -21,8 +38,8 @@ const SearchForm = props => {
           className="form-control"
           name="sort"
           id="sort"
-          onChange={() =>
-            props.handleSort(document.querySelector("#sort").value)
+          onChange={()=>
+            props.handleSort.bind(document.querySelector("#sort").value)
           }
         >
           <option value="First Name">First Name A-Z</option>
