@@ -9,7 +9,8 @@ export default class EmployeeInfo extends Component {
     state = {  //saving data here
         users: [{}],
         order: "descend",
-        filteredUsers: [{}]
+        filteredUsers: [{}],
+        search: ""
     }
 
     headings = [
@@ -61,8 +62,29 @@ export default class EmployeeInfo extends Component {
         this.setState({ filteredUsers: usersSorted });
 
     }
-    searchChange = event => {
-        const filter = event.target.value;
+    // handleInputchange function 
+     handleInputChange =(event) => {
+        console.log(event.target.value)
+        this.setState ({search:event.target.value})
+        this.searchChange (event.target.value)
+        // const {value} =event.target
+    }
+
+    handleSelectChange =(event) => {
+        console.log(event.target.value)
+        if (event.target.value === "Email"){
+            
+            const sortedEmployees=this.state.users.sort((a,b)=>a.email<b.email)
+            console.log(sortedEmployees)
+            this.setState ({filteredUsers:sortedEmployees})
+        }
+
+
+
+    }
+    searchChange = (filter) => {
+        
+        console.log(filter)
         const filteredList = this.state.users.filter(item => {
             let values = Object.values(item)
                 .join("")
@@ -85,7 +107,7 @@ export default class EmployeeInfo extends Component {
     render() {
         return (
             <>
-                <Nav searchChange={this.searchChange} employees={this.state.users}/>
+                <Nav searchChange={this.searchChange} employees={this.state.users} search={this.search} handleInputChange={this.handleInputChange} employeeSort= {this.employeeSort} handleSelectChange= {this.handleSelectChange}/>
                 <div className="EmployeeInfo" />
                 <EmployeeTable
                     headings={this.headings}

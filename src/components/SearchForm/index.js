@@ -38,9 +38,10 @@ const SearchForm = props => {
           className="form-control"
           name="sort"
           id="sort"
-          onChange={()=>
-            props.handleSort.bind(document.querySelector("#sort").value)
-          }
+          onChange={props.handleSelectChange}
+            
+            // props.employeeSort.bind(document.querySelector("#sort").value)
+          
         >
           <option value="First Name">First Name A-Z</option>
           <option value="Last Name">Last Name A-Z</option>
