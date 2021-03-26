@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 //import { PropTypes } from 'react';
 
 // function SearchForm({ handleSearchChange}) {
@@ -18,6 +18,7 @@ import React from "react";
 // }
 
 const SearchForm = props => {
+  const select=useRef()
   console.log(props.employees)
   return (
     <form className="search" onChange={props.handleFormSubmit}>
@@ -38,8 +39,9 @@ const SearchForm = props => {
           className="form-control"
           name="sort"
           id="sort"
-          onChange={props.handleSelectChange}
-            
+          onChange={()=> props.employeeSort(select.current.value)}
+            ref={select}
+
             // props.employeeSort.bind(document.querySelector("#sort").value)
           
         >

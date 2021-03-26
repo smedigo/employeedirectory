@@ -23,44 +23,40 @@ export default class EmployeeInfo extends Component {
     // !== vs === vs == vs =
     // === compares both type and value, is a strict comparison 
     // == only compares value, a == 2 
-    employeeSort = heading => {
-        if (this.state.order === "descend") {
-            this.setState({
-                order: "ascend"
-            })
-        } else {
-            this.setState({
-                order: "descend"
-            })
+    employeeSort = sortValue => {
+        console.log(this.state.users)
+        const sortedUsers= [...this.state.users]
+        switch (sortValue){
+            case "First Name":
+          this.setState({
+           users: sortedUsers.sort((a,b)=>a.name.first>b.name.first ? 1 : -1)
+
+          })
+          break;
+          case "Last Name":
+          this.setState({
+           users: sortedUsers.sort((a,b)=>a.name.last>b.name.last ? 1 : -1)
+
+          })
+          break;
+          case "Age":
+          this.setState({
+           users: sortedUsers.sort((a,b)=>a.dob.age-b.dob.age)
+
+          })
+          break;
+          case "Email":
+          this.setState({
+           users: sortedUsers.sort((a,b)=>a.email>b.email ? 1 : -1)
+
+          })
+
+          break;
+          default:
+              break
         }
 
-        const compareFunction = (a, b) => {
-            if (this.state.order === "ascend") {
-                if (a[heading] === undefined) {
-                    return 1;
-                } else if (b[heading] === undefined) {
-                    return -1;
-                }
-                else if (heading === "name") {
-                    return a[heading].first.localCompare(b[heading].first);
-                } else {
-                    return a[heading] - b[heading];
-                }
-            } else {
-                if (a[heading] === undefined) {
-                    return 1;
-                } else if (b[heading] === undefined) {
-                    return -1;
-                } else if (heading === "name") {
-                    return b[heading].first.localCompare(a[heading].first);
-                } else {
-                    return b[heading] - a[heading];
-                }
-            }
-        }
-        const usersSorted = this.state.filteredUsers.sort(compareFunction);
-        this.setState({ filteredUsers: usersSorted });
-
+    
     }
     // handleInputchange function 
      handleInputChange =(event) => {
@@ -111,7 +107,7 @@ export default class EmployeeInfo extends Component {
                 <div className="EmployeeInfo" />
                 <EmployeeTable
                     headings={this.headings}
-                    users={this.state.filteredUsers}
+                    users={this.state.users}
                     employeeSort={this.employeeSort}
 
                 />
